@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package task;
+option go_package = "github.com/TellSamm/project-protos/proto/task";
+
+// Сущность задача
+message Task {
+  uint32 id      = 1;
+  string title   = 2;
+}
+
+message CreateTaskRequest {
+  string title = 1;
+}
+message CreateTaskResponse {
+  Task task = 1;
+}
+
+service TaskService {
+  rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
+  rpc GetTask    (Task)             returns (Task);
+  // TODO: дописать ListTasks, UpdateTask, DeleteTask
+}
