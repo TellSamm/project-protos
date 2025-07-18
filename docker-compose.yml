@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: protodb_pg
+    environment:
+      POSTGRES_DB: protodb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5436:5432"
+    volumes:
+      - protodb_pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  protodb_pgdata:
