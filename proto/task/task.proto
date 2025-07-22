@@ -3,23 +3,58 @@ syntax = "proto3";
 package task;
 option go_package = "github.com/TellSamm/project-protos/proto/task";
 
-// Сущность задача
 message Task {
-  uint32 id      = 1;
-  string title   = 2;
+  string id = 1;
+  string user_id = 2;
+  string title = 3;
+  bool is_done = 4;
 }
 
+
 message CreateTaskRequest {
-  string title = 1;
+  string user_id = 1;
+  string title   = 2;
 }
 message CreateTaskResponse {
   Task task = 1;
 }
 
-service TaskService {
-  rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
-  rpc GetTask    (Task)             returns (Task);
-  // TODO: дописать ListTasks, UpdateTask, DeleteTask
+
+message GetTaskRequest {
+  string id = 1;
+}
+message GetTaskResponse {
+  Task task = 1;
 }
 
+message ListTasksRequest {}
 
+message ListTasksResponse {
+  repeated Task tasks = 1;
+}
+
+message ListTasksByUserRequest {
+  string user_id = 1;
+}
+message ListTasksByUserResponse {
+  repeated Task tasks = 1;
+}
+
+message UpdateTaskRequest {
+  Task task = 1;
+}
+message UpdateTaskResponse {}
+
+message DeleteTaskRequest {
+  string id = 1;
+}
+message DeleteTaskResponse {}
+
+service TaskService {
+  rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
+  rpc GetTask (GetTaskRequest) returns (GetTaskResponse);
+  rpc ListTasks (ListTasksRequest) returns (ListTasksResponse);
+  rpc ListTasksByUser (ListTasksByUserRequest) returns (ListTasksByUserResponse);
+  rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
+  rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
+}

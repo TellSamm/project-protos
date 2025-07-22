@@ -1,6 +1,7 @@
 package user
 
 import (
+	models2 "github.com/TellSamm/tasks-service/internal/models"
 	"github.com/TellSamm/users-service/internal/models"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -12,7 +13,7 @@ type UserRepository interface {
 	GetUserByID(id string) (*models.User, error)
 	UpdateUser(user *models.User) error
 	DeleteUserByID(id string) error
-	GetTasksByUserID(userID uuid.UUID) ([]models.Task, error)
+	GetTasksByUserID(userID uuid.UUID) ([]models2.Task, error)
 }
 
 type userRepository struct {
@@ -33,8 +34,8 @@ func (repo *userRepository) GetAllUsers() ([]models.User, error) {
 	return users, err
 }
 
-func (repo *userRepository) GetTasksByUserID(userID uuid.UUID) ([]models.Task, error) {
-	var tasks []models.Task
+func (repo *userRepository) GetTasksByUserID(userID uuid.UUID) ([]models2.Task, error) {
+	var tasks []models2.Task
 	err := repo.db.Where("user_id = ?", userID).Find(&tasks).Error
 	return tasks, err
 }

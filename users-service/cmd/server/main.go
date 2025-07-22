@@ -13,7 +13,7 @@ func main() {
 	database.InitDB()
 
 	repo := user.NewUserRepository(database.DB)
-	svc := user.NewUSerService(repo)
+	svc := user.NewUserService(repo)
 
 	if err := transportgrpc.RunGRPC(svc); err != nil {
 		log.Fatalf("gRPC сервер завершился с ошибкой: %v", err)
