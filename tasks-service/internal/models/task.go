@@ -6,7 +6,7 @@ import (
 )
 
 type Task struct {
-	ID        string         `json:"id" gorm:"primaryKey"`
+	ID        string         `json:"-" gorm:"primaryKey"`
 	Title     string         `json:"title"`
 	IsDone    bool           `json:"is_done"`
 	UserID    uuid.UUID      `json:"user_id"`
