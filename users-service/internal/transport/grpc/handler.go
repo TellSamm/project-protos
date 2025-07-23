@@ -89,6 +89,24 @@ func (h *Handler) UpdateUser(ctx context.Context, req *userpb.UpdateUserRequest)
 	return resp, nil
 }
 
+func (h *Handler) GetUser(ctx context.Context, req *userpb.GetUserRequest) (*userpb.GetUserResponse, error) {
+	id := req.GetId()
+
+	userModel, err := h.svc.GetUserByID(id)
+	if err != nil {
+		return nil, err
+	}
+
+	protoUser := &userpb.User{
+		Id:    userModel.ID.String(),
+		Email: userModel.Email,
+	}
+
+	return &userpb.GetUserResponse{
+		User: protoUser,
+	}, nil
+}
+
 func (h *Handler) DeleteUser(ctx context.Context, req *userpb.DeleteUserRequest) (*userpb.DeleteUserResponse, error) {
 	id := req.GetId()
 

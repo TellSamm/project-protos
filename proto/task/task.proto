@@ -19,7 +19,6 @@ message CreateTaskResponse {
   Task task = 1;
 }
 
-
 message GetTaskRequest {
   string id = 1;
 }
