@@ -1,9 +1,7 @@
 package user
 
 import (
-	models2 "github.com/TellSamm/tasks-service/internal/models"
 	"github.com/TellSamm/users-service/internal/models"
-	"github.com/google/uuid"
 )
 
 type UserService interface {
@@ -12,7 +10,6 @@ type UserService interface {
 	GetUserByID(id string) (*models.User, error)
 	UpdateUser(user *models.User) error
 	DeleteUserByID(id string) error
-	GetTasksForUser(userID string) ([]models2.Task, error)
 }
 
 type userService struct {
@@ -29,14 +26,6 @@ func (s *userService) CreateUser(user *models.User) error {
 
 func (s *userService) GetAllUsers() ([]models.User, error) {
 	return s.repo.GetAllUsers()
-}
-
-func (s *userService) GetTasksForUser(userID string) ([]models2.Task, error) {
-	uid, err := uuid.Parse(userID)
-	if err != nil {
-		return nil, err
-	}
-	return s.repo.GetTasksByUserID(uid)
 }
 
 func (s *userService) GetUserByID(id string) (*models.User, error) {
