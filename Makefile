@@ -36,5 +36,8 @@ migrate-down:
 # ===============================
 
 # Запуск приложения
-run:
+run-users:
 	cd users-service && go run cmd/server/main.go
+
+run-tasks:
+	cd tasks-service && go run cmd/server/main.go
