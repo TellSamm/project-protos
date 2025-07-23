@@ -6,7 +6,7 @@ import (
 )
 
 type Task struct {
-	ID        string         `json:"-" gorm:"primaryKey"`
+	ID        string         `json:"-" gorm:"primaryKey;default:gen_random_uuid()"`
 	Title     string         `json:"title"`
 	IsDone    bool           `json:"is_done"`
 	UserID    uuid.UUID      `json:"user_id"`
