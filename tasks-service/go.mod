@@ -3,7 +3,7 @@ module github.com/TellSamm/tasks-service
 go 1.24.3
 
 require (
-	github.com/TellSamm/project-protos v1.0.1
+	github.com/TellSamm/project-protos v1.0.2
 	github.com/google/uuid v1.6.0
 	google.golang.org/grpc v1.74.0
 	gorm.io/driver/postgres v1.6.0

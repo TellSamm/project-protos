@@ -43,7 +43,10 @@ message ListTasksByUserResponse {
 message UpdateTaskRequest {
   Task task = 1;
 }
-message UpdateTaskResponse {}
+
+message UpdateTaskResponse {
+  Task task = 1;
+}
 
 message DeleteTaskRequest {
   string id = 1;
