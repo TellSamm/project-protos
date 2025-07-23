@@ -147,5 +147,5 @@ func (h *Handler) DeleteTask(ctx context.Context, req *taskpb.DeleteTaskRequest)
 		return nil, fmt.Errorf("failed to delete task: %w", err)
 	}
 
-	return &taskpb.DeleteTaskResponse{Success: true}, nil
+	return &taskpb.DeleteTaskResponse{}, nil
 }
